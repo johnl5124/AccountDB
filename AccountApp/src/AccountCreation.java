@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,13 +9,17 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AccountCreation {
-
-	private JFrame frame;
+public class AccountCreation extends JFrame 
+{
+	//private JFrame frame;
+	private JPanel contentPane;
 	private JTextField firstname;
 	private JTextField lastname;
 	private JTextField emailadd;
@@ -32,8 +37,8 @@ public class AccountCreation {
 			{
 				try 
 				{
-					AccountCreation window = new AccountCreation();
-					window.frame.setVisible(true);
+					AccountCreation frame = new AccountCreation();
+					frame.setVisible(true);
 				} 
 				catch (Exception e) 
 				{
@@ -56,10 +61,12 @@ public class AccountCreation {
 	 */
 	private void initialize() 
 	{	
-		frame = new JFrame("Account Creation");
-		frame.setBounds(100, 100, 750, 750);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 750, 750);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JButton btnConnectionToDatabase = new JButton("Connection to database");
 		btnConnectionToDatabase.addMouseListener(new MouseAdapter() 
@@ -71,37 +78,37 @@ public class AccountCreation {
 			}
 		});
 		btnConnectionToDatabase.setBounds(15, 16, 232, 29);
-		frame.getContentPane().add(btnConnectionToDatabase);
+		contentPane.add(btnConnectionToDatabase);
 		
 		//USER INFORMATION
 		firstname = new JTextField();
 		firstname.setBounds(322, 165, 146, 26);
-		frame.getContentPane().add(firstname);
+		contentPane.add(firstname);
 		firstname.setColumns(10);
 		lastname = new JTextField();
 		lastname.setBounds(322, 207, 146, 26);
-		frame.getContentPane().add(lastname);
+		contentPane.add(lastname);
 		lastname.setColumns(10);
 		emailadd = new JTextField();
 		emailadd.setBounds(322, 249, 146, 26);
-		frame.getContentPane().add(emailadd);
+		contentPane.add(emailadd);
 		emailadd.setColumns(10);
 		password1 = new JTextField();
 		password1.setBounds(322, 333, 146, 26);
-		frame.getContentPane().add(password1);
+		contentPane.add(password1);
 		password1.setColumns(10);
 		username = new JTextField();
 		username.setBounds(322, 291, 146, 26);
-		frame.getContentPane().add(username);
+		contentPane.add(username);
 		username.setColumns(10);
 		
 		JLabel firstName = new JLabel("First Name:");
 		firstName.setBounds(202, 168, 92, 20);
-		frame.getContentPane().add(firstName);
+		contentPane.add(firstName);
 		
 		JLabel lastName = new JLabel("Last Name:");
 		lastName.setBounds(202, 210, 92, 20);
-		frame.getContentPane().add(lastName);
+		contentPane.add(lastName);
 		
 		JButton finishBtn = new JButton("Finish");
 		finishBtn.setEnabled(false);
@@ -133,19 +140,19 @@ public class AccountCreation {
 			}
 		});
 		finishBtn.setBounds(332, 375, 115, 29);
-		frame.getContentPane().add(finishBtn);
+		contentPane.add(finishBtn);
 		
 		JLabel emailTitle = new JLabel("Email:");
 		emailTitle.setBounds(212, 252, 69, 20);
-		frame.getContentPane().add(emailTitle);
+		contentPane.add(emailTitle);
 		
 		JLabel passwordTitle = new JLabel("Password");
 		passwordTitle.setBounds(202, 336, 69, 20);
-		frame.getContentPane().add(passwordTitle);
+		contentPane.add(passwordTitle);
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setBounds(202, 294, 92, 20);
-		frame.getContentPane().add(lblUsername);
+		contentPane.add(lblUsername);
 	}
 
 	//Connection Object to SQL DB

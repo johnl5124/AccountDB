@@ -4,8 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
-public class Dashboard extends JFrame {
+public class AdminPage extends JFrame {
 
 	private JPanel contentPane;
 
@@ -13,13 +14,16 @@ public class Dashboard extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() {
-				try {
-					Dashboard frame = new Dashboard();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() 
+			{
+				try 
+				{
+					AdminPage frame = new AdminPage();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+				catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -29,13 +33,18 @@ public class Dashboard extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Dashboard() {
+	public AdminPage() 
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 750, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblWhatUp = new JLabel("WHAT UP");
+		lblWhatUp.setBounds(258, 150, 133, 20);
+		contentPane.add(lblWhatUp);
 	}
 
 }
