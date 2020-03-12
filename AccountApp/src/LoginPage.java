@@ -54,11 +54,13 @@ public class LoginPage {
 		frame.getContentPane().add(title);
 		
 		user_name = new JTextField();
+		user_name.setHorizontalAlignment(SwingConstants.CENTER);
 		user_name.setBounds(270, 152, 146, 26);
 		frame.getContentPane().add(user_name);
 		user_name.setColumns(10);
 		
 		password = new JTextField();
+		password.setHorizontalAlignment(SwingConstants.CENTER);
 		password.setBounds(270, 207, 146, 26);
 		frame.getContentPane().add(password);
 		password.setColumns(10);
@@ -72,26 +74,23 @@ public class LoginPage {
 		frame.getContentPane().add(password_title);
 		
 		JButton enter_btn = new JButton("Enter");
+		enter_btn.setEnabled(false);
 		enter_btn.addMouseListener(new MouseAdapter() 
 		{
-			String name = user_name.toString();
-			String pass = password.toString();
+			String name = user_name.getText();
+			String pass = password.getText();
 			
 			@Override
 			public void mouseClicked(MouseEvent e) 
-			{
-				
-				System.out.println("Error to console");
-				if (name.isEmpty())
+			{	
+				if (name.isEmpty() || pass.isEmpty())
 				{
-					System.out.println("Error to console");
-					JOptionPane.showMessageDialog(frame, "Error");
+					enter_btn.setEnabled(false);
 				}
-				else if (pass.isEmpty())
+				else
 				{
-					System.out.println("Error to console");
-					JOptionPane.showMessageDialog(frame, "Error");
-				}				
+					enter_btn.setEnabled(true);
+				}
 			}
 		});
 		enter_btn.setBounds(280, 256, 115, 29);
@@ -104,7 +103,6 @@ public class LoginPage {
 			public void mouseClicked(MouseEvent e) 
 			{
 				AccountCreation ac = new AccountCreation();
-				
 			}
 		});
 		account_creation_btn.setBounds(241, 356, 196, 29);
