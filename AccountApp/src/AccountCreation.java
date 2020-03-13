@@ -65,7 +65,6 @@ public class AccountCreation extends JFrame
 		setBounds(100, 100, 750, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JButton btnConnectionToDatabase = new JButton("Connection to database");
@@ -77,6 +76,7 @@ public class AccountCreation extends JFrame
 				connect();
 			}
 		});
+		contentPane.setLayout(null);
 		btnConnectionToDatabase.setBounds(15, 16, 232, 29);
 		contentPane.add(btnConnectionToDatabase);
 		
@@ -151,7 +151,7 @@ public class AccountCreation extends JFrame
 		contentPane.add(passwordTitle);
 		
 		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setBounds(202, 294, 92, 20);
+		lblUsername.setBounds(189, 287, 92, 35);
 		contentPane.add(lblUsername);
 	}
 

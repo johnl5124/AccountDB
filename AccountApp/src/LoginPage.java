@@ -9,10 +9,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import javax.swing.SpringLayout;
 
 public class LoginPage {
 
-	private JFrame frame;
+	public JFrame myFrame;
 	private JTextField user_name;
 	private JTextField password;
 
@@ -28,7 +32,7 @@ public class LoginPage {
 				try 
 				{
 					LoginPage window = new LoginPage();
-					window.frame.setVisible(true);
+					window.myFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,47 +53,25 @@ public class LoginPage {
 	 */
 	private void initialize() 
 	{
-		frame = new JFrame("Account Application");
-		frame.setBounds(100, 100, 750, 750);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setLocationRelativeTo(null);
+		myFrame = new JFrame("Account Application");
+		myFrame.setBounds(100, 100, 750, 750);
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		myFrame.getContentPane().setLayout(null);
+		myFrame.setLocationRelativeTo(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 728, 694);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel toolbar = new JPanel();
+		toolbar.setBounds(0, 0, 728, 49);
+		myFrame.getContentPane().add(toolbar);
+		toolbar.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnPaneltest = new JButton("PanelTest");
-		btnPaneltest.setBounds(15, 16, 101, 29);
-		panel.add(btnPaneltest);
+		toolbar.add(btnPaneltest);
 		
 		JButton account_creation_btn = new JButton("Account Creation");
-		account_creation_btn.setBounds(254, 495, 196, 29);
-		panel.add(account_creation_btn);
-		
-		JButton enter_btn = new JButton("Enter");
-		enter_btn.setBounds(274, 327, 115, 29);
-		panel.add(enter_btn);
-		enter_btn.setEnabled(false);
-		
-		JLabel password_title = new JLabel("Password:");
-		password_title.setBounds(153, 273, 90, 20);
-		panel.add(password_title);
-		
-		JLabel username_title = new JLabel("Username:");
-		username_title.setBounds(158, 221, 90, 20);
-		panel.add(username_title);
-		
-		password = new JTextField();
-		password.setBounds(257, 269, 146, 26);
-		panel.add(password);
-		password.setHorizontalAlignment(SwingConstants.CENTER);
-		password.setColumns(10);
+		toolbar.add(account_creation_btn);
 		
 		JButton adminbtn = new JButton("Admin Mode");
-		adminbtn.setBounds(568, 16, 145, 29);
-		panel.add(adminbtn);
+		toolbar.add(adminbtn);
 		adminbtn.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -100,16 +82,33 @@ public class LoginPage {
 			}
 		});
 		
+		JPanel maincontent = new JPanel();
+		maincontent.setBounds(118, 137, 491, 411);
+		myFrame.getContentPane().add(maincontent);
+		
 		JLabel title = new JLabel("Login");
-		title.setBounds(291, 71, 69, 20);
-		panel.add(title);
+		maincontent.add(title);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		JLabel username_title = new JLabel("Username:");
+		maincontent.add(username_title);
+		
 		user_name = new JTextField();
-		user_name.setBounds(256, 218, 145, 25);
-		panel.add(user_name);
+		maincontent.add(user_name);
 		user_name.setHorizontalAlignment(SwingConstants.CENTER);
 		user_name.setColumns(10);
+		
+		JLabel password_title = new JLabel("Password:");
+		maincontent.add(password_title);
+		
+		password = new JTextField();
+		maincontent.add(password);
+		password.setHorizontalAlignment(SwingConstants.CENTER);
+		password.setColumns(10);
+		
+		JButton enter_btn = new JButton("Enter");
+		maincontent.add(enter_btn);
+		enter_btn.setEnabled(false);
 		enter_btn.addMouseListener(new MouseAdapter() 
 		{
 			String name = user_name.getText();
@@ -135,20 +134,6 @@ public class LoginPage {
 			{
 				AccountCreation ac = new AccountCreation();
 				ac.setVisible(true);
-			}
-		});
-		btnPaneltest.addMouseListener(new MouseAdapter() 
-		{
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				panel.setVisible(false);
-				
-				System.out.println("Hello world");
-				
-				paneltest pt = new paneltest();
-				pt.setVisible(true);
-				frame.add(pt);
 			}
 		});
 	}
