@@ -10,6 +10,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class panelOne extends JPanel {
 	private JTextField usernameinput;
@@ -50,7 +52,18 @@ public class panelOne extends JPanel {
 		JButton enterBtn = new JButton("Enter");
 		enterBtn.setBounds(323, 361, 69, 29);
 		add(enterBtn);
+		
+		JButton accountCreationbtn = new JButton("Account Creation");
+		accountCreationbtn.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+			}
+		});
+		accountCreationbtn.setBounds(307, 436, 153, 29);
+		add(accountCreationbtn);
 
 	}
-
 }
