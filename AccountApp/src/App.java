@@ -20,6 +20,9 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.JEditorPane;
 
 public class App {
 
@@ -71,9 +74,9 @@ public class App {
 	 */
 	public App() 
 	{
-		loginPanel();
+		//loginPanel();
 		
-		accountPanel();
+		//accountPanel();
 		
 		adminPanel();
 	}
@@ -286,6 +289,30 @@ public class App {
 		});
 		backbtn.setBounds(10, 5, 89, 20);
 		AdminPanel.add(backbtn);
+		
+		String[] dbInfo = {"First Name", "Last Name", "Email", "Username", "Password"};
+		
+		
+		JComboBox comboBox = new JComboBox(dbInfo);
+		comboBox.setBounds(183, 116, 117, 20);
+		AdminPanel.add(comboBox);
+		
+		JEditorPane editorPane = new JEditorPane();
+		editorPane.setBounds(121, 166, 249, 112);
+		AdminPanel.add(editorPane);
+		
+		JButton btnFinish = new JButton("Finish");
+		btnFinish.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				DBClass dbselect = new DBClass();
+				dbselect.selectAll();
+			}
+		});
+		btnFinish.setBounds(199, 321, 89, 23);
+		AdminPanel.add(btnFinish);
 		
 
 	}

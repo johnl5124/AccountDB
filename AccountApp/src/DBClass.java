@@ -1,7 +1,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -51,6 +53,29 @@ public class DBClass
             pstmt.setString(4, username);
             pstmt.setString(5, password);
             pstmt.executeUpdate();
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+	
+	//Select information from db
+	public void selectAll()
+	{
+        String sql = "SELECT FirstName, LastName, Email FROM UserInfo";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) 
+            {
+                System.out.println(rs.getString("FirstName") +  "\t" + 
+                                   rs.getString("LastName") + "\t" +
+                                   rs.getString("Email"));
+            }
         } 
         catch (SQLException e) 
         {
