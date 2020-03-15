@@ -150,6 +150,7 @@ public class App {
 	public void accountPanel()
 	{
 		AccountCreation = new JPanel();
+		AccountCreation.setVisible(false);
 		AccountCreation.setBounds(0, 0, 494, 471);
 		frmAccountApp.getContentPane().add(AccountCreation);
 		AccountCreation.setLayout(null);
@@ -269,6 +270,7 @@ public class App {
 	public void adminPanel()
 	{
 		AdminPanel = new JPanel();
+		AdminPanel.setVisible(false);
 		AdminPanel.setBounds(0, 0, 494, 471);
 		frmAccountApp.getContentPane().add(AdminPanel);
 		AdminPanel.setLayout(null);
@@ -307,6 +309,9 @@ public class App {
 			public void mouseClicked(MouseEvent e) 
 			{
 				DBClass dbselect = new DBClass();
+				
+				dbselect.ifEmpty();
+				
 				dbselect.selectAll();
 			}
 		});
@@ -320,12 +325,13 @@ public class App {
 			public void mouseClicked(MouseEvent e) 
 			{
 				DBClass DBdelete = new DBClass();
-				//DBdelete.ifEmpty();
 				
 				int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to reset the database?");
 				
 				if(confirm == 0)
 				{
+					DBdelete.ifEmpty();
+					
 					JOptionPane.showMessageDialog(null, "You have reset the DB");
 
 					DBdelete.deleteAll();
