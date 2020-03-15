@@ -26,6 +26,7 @@ public class App {
 	private static JFrame frmAccountApp;
 	private JPanel LoginPanel;
 	private JPanel AccountCreation;
+	private JPanel AdminPanel;
 	public JTextField username;
 	public JTextField password;
 	public JTextField firstname;
@@ -33,6 +34,7 @@ public class App {
 	public JTextField email;
 	public JTextField usernameTF;
 	public JTextField passwordTF;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
@@ -72,6 +74,8 @@ public class App {
 		loginPanel();
 		
 		accountPanel();
+		
+		adminPanel();
 	}
 
 	public void loginPanel()
@@ -123,6 +127,21 @@ public class App {
 		});
 		btnAccountCreation.setBounds(355, 5, 135, 25);
 		LoginPanel.add(btnAccountCreation);
+		
+		JButton btnAdminPage = new JButton("Admin Page");
+		btnAdminPage.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				LoginPanel.setVisible(false);
+				AccountCreation.setVisible(false);
+				AdminPanel.setVisible(true);
+			}
+		});
+
+		btnAdminPage.setBounds(5, 5, 110, 25);
+		LoginPanel.add(btnAdminPage);
 	}
 	
 	public void accountPanel()
@@ -242,5 +261,32 @@ public class App {
 		});
 		btnConnectionTest.setBounds(350, 5, 135, 20);
 		AccountCreation.add(btnConnectionTest);
+	}
+	
+	public void adminPanel()
+	{
+		AdminPanel = new JPanel();
+		AdminPanel.setBounds(0, 0, 494, 471);
+		frmAccountApp.getContentPane().add(AdminPanel);
+		AdminPanel.setLayout(null);
+		
+		JLabel lblAdminPage = new JLabel("Admin Page");
+		lblAdminPage.setBounds(218, 11, 70, 15);
+		AdminPanel.add(lblAdminPage);
+		
+		JButton backbtn = new JButton("Back");
+		backbtn.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				LoginPanel.setVisible(true);
+				AdminPanel.setVisible(false);
+			}
+		});
+		backbtn.setBounds(10, 5, 89, 20);
+		AdminPanel.add(backbtn);
+		
+
 	}
 }
