@@ -44,8 +44,7 @@ public class DBClass
 	{
         String sql = "INSERT INTO UserInfo(FirstName, LastName, Email, UserName, Password) VALUES (?, ?, ?, ?, ?)";
  
-        try (//Connection conn = this.connect();
-                PreparedStatement pstmt = connect().prepareStatement(sql)) 
+        try (PreparedStatement pstmt = connect().prepareStatement(sql)) 
         {
             pstmt.setString(1, firstname);
             pstmt.setString(2, lastname);
@@ -59,6 +58,28 @@ public class DBClass
             System.out.println(e.getMessage());
         }
     }
+	
+	//Empty test for DB
+	public void ifEmpty()
+	{
+		String url = "jdbc:sqlite:C://Users//johnl//Documents//SQL DB//Users.db";
+		
+		try(Connection conn = this.connect();)
+		{
+			Statement stmt = conn.createStatement(); 
+			ResultSet rs = stmt.executeQuery("SELECT * from UserInfo");
+			
+			if (rs.next() == false)
+			{
+				JOptionPane.showMessageDialog(null, "The database is empty");
+			}
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	//Select information from db
 	public void selectAll()
@@ -82,4 +103,21 @@ public class DBClass
             System.out.println(e.getMessage());
         }
     }
+	
+	//DB table reset
+	public void deleteAll()
+	{
+		String sql = "DELETE FROM UserInfo";
+		
+		try (Connection conn = this.connect();
+                PreparedStatement deleteREC = conn.prepareStatement(sql)) 
+		{
+            //Executes the delete statement
+			deleteREC.executeUpdate();
+        } 
+		catch (SQLException e) 
+		{
+            System.out.println(e.getMessage());
+        }
+	}
 }

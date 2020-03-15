@@ -74,9 +74,9 @@ public class App {
 	 */
 	public App() 
 	{
-		//loginPanel();
+		loginPanel();
 		
-		//accountPanel();
+		accountPanel();
 		
 		adminPanel();
 	}
@@ -292,7 +292,6 @@ public class App {
 		
 		String[] dbInfo = {"First Name", "Last Name", "Email", "Username", "Password"};
 		
-		
 		JComboBox comboBox = new JComboBox(dbInfo);
 		comboBox.setBounds(183, 116, 117, 20);
 		AdminPanel.add(comboBox);
@@ -313,6 +312,28 @@ public class App {
 		});
 		btnFinish.setBounds(199, 321, 89, 23);
 		AdminPanel.add(btnFinish);
+		
+		JButton btnResetDb = new JButton("Reset DB");
+		btnResetDb.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				DBClass DBdelete = new DBClass();
+				//DBdelete.ifEmpty();
+				
+				int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to reset the database?");
+				
+				if(confirm == 0)
+				{
+					JOptionPane.showMessageDialog(null, "You have reset the DB");
+
+					DBdelete.deleteAll();
+				}
+			}
+		});
+		btnResetDb.setBounds(10, 437, 89, 23);
+		AdminPanel.add(btnResetDb);
 		
 
 	}
