@@ -13,8 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
 
 public class panelTwo extends JPanel {
+	private JTextField firstname;
+	private JTextField lastname;
+	private JTextField emailadd;
+	private JTextField username;
+	private JTextField password;
 
 	/**
 	 * Create the panel.
@@ -24,7 +30,8 @@ public class panelTwo extends JPanel {
 		setLayout(null);
 		
 		JLabel lblAccountCreationPage = new JLabel("Account Creation Page");
-		lblAccountCreationPage.setBounds(320, 16, 167, 20);
+		lblAccountCreationPage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAccountCreationPage.setBounds(282, 11, 167, 20);
 		add(lblAccountCreationPage);
 		{				
 			JButton btnConnectionToDatabase = new JButton("Connection to database");
@@ -33,84 +40,27 @@ public class panelTwo extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) 
 				{
-					connect();
+					//connect();
 				}
 			});
 			
-			//USER INFORMATION
-			firstname = new JTextField();
-			firstname.setBounds(322, 165, 146, 26);
-			contentPane.add(firstname);
-			firstname.setColumns(10);
-			lastname = new JTextField();
-			lastname.setBounds(322, 207, 146, 26);
-			contentPane.add(lastname);
-			lastname.setColumns(10);
-			emailadd = new JTextField();
-			emailadd.setBounds(322, 249, 146, 26);
-			contentPane.add(emailadd);
-			emailadd.setColumns(10);
-			password1 = new JTextField();
-			password1.setBounds(322, 333, 146, 26);
-			contentPane.add(password1);
-			password1.setColumns(10);
-			username = new JTextField();
-			username.setBounds(322, 291, 146, 26);
-			contentPane.add(username);
-			username.setColumns(10);
+			/*String first_name = firstname.getText();
+			String last_name = lastname.getText(); 
+			String email = emailadd.getText(); 
+			String password = password.getText(); 
+			String userName = username.getText();
 			
-			JLabel firstName = new JLabel("First Name:");
-			firstName.setBounds(202, 168, 92, 20);
-			contentPane.add(firstName);
-			
-			JLabel lastName = new JLabel("Last Name:");
-			lastName.setBounds(202, 210, 92, 20);
-			contentPane.add(lastName);
-			
-			JButton finishBtn = new JButton("Finish");
-			finishBtn.setEnabled(false);
-			finishBtn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-			finishBtn.addMouseListener(new MouseAdapter() 
+			if(first_name.isEmpty() || last_name.isEmpty() || email.isEmpty() || password.isEmpty() || userName.isEmpty())
 			{
-				@Override
-				public void mouseClicked(MouseEvent e) 
-				{
-					String first_name = firstname.getText();
-					String last_name = lastname.getText(); 
-					String email = emailadd.getText(); 
-					String password = password1.getText(); 
-					String userName = username.getText();
-					
-					if(first_name.isEmpty() || last_name.isEmpty() || email.isEmpty() || password.isEmpty() || userName.isEmpty())
-					{
-						finishBtn.setEnabled(false);
-					}
-					else
-					{
-						finishBtn.setEnabled(true);
-						AccountCreation app = new AccountCreation();
-						app.insert(first_name, last_name, email, userName, password);
-					}
-				}
-			});
-			finishBtn.setBounds(332, 375, 115, 29);
-			contentPane.add(finishBtn);
+				finishBtn.setEnabled(false);
+			}
+			else
+			{
+				finishBtn.setEnabled(true);
+				AccountCreation app = new AccountCreation();
+				app.insert(first_name, last_name, email, userName, password);
+			}
 			
-			JLabel emailTitle = new JLabel("Email:");
-			emailTitle.setBounds(212, 252, 69, 20);
-			contentPane.add(emailTitle);
-			
-			JLabel passwordTitle = new JLabel("Password");
-			passwordTitle.setBounds(202, 336, 69, 20);
-			contentPane.add(passwordTitle);
-			
-			JLabel lblUsername = new JLabel("Username:");
-			lblUsername.setBounds(189, 287, 92, 35);
-			contentPane.add(lblUsername);
-		}
 
 		//Connection Object to SQL DB
 		private Connection connect() 
@@ -151,6 +101,7 @@ public class panelTwo extends JPanel {
 	            System.out.println(e.getMessage());
 	        }
 	    }
+	    */
 	}
 	}
 

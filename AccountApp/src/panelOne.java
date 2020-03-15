@@ -13,15 +13,19 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class panelOne extends JPanel {
+public class panelOne extends JPanel 
+{
 	private JTextField usernameinput;
 	private JTextField passwordinput;
+	private panelTwo p2;
 
 	/**
 	 * Create the panel.
 	 */
 	public panelOne() 
 	{
+		p2 = new panelTwo();
+		
 		setBounds(new Rectangle(800, 800, 800, 800));
 		setAlignmentX(Component.LEFT_ALIGNMENT);
 		setBackground(Color.PINK);
@@ -59,6 +63,12 @@ public class panelOne extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
+				panelOne p1 = new panelOne();
+				p1.setVisible(false);
+				
+				p1.add(p2);
+				p2.setVisible(true);
+
 				
 			}
 		});
