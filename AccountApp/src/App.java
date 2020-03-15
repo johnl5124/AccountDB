@@ -11,6 +11,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -25,13 +26,13 @@ public class App {
 	private static JFrame frmAccountApp;
 	private JPanel LoginPanel;
 	private JPanel AccountCreation;
-	private JTextField username;
-	private JTextField password;
-	private JTextField firstname;
-	private JTextField lastname;
-	private JTextField email;
-	private JTextField usernameTF;
-	private JTextField passwordTF;
+	public JTextField username;
+	public JTextField password;
+	public JTextField firstname;
+	public JTextField lastname;
+	public JTextField email;
+	public JTextField usernameTF;
+	public JTextField passwordTF;
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,7 @@ public class App {
 		frmAccountApp.setResizable(false);
 		frmAccountApp.setTitle("Account App");
 		frmAccountApp.setBackground(Color.PINK);
-		frmAccountApp.setBounds(100, 100, 800, 800);
+		frmAccountApp.setBounds(100, 100, 500, 500);
 		frmAccountApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAccountApp.getContentPane().setLayout(null);
 		
@@ -76,38 +77,38 @@ public class App {
 	public void loginPanel()
 	{
 		LoginPanel = new JPanel();
-		LoginPanel.setBounds(0, 0, 794, 771);
+		LoginPanel.setBounds(0, 0, 494, 471);
 		frmAccountApp.getContentPane().add(LoginPanel);
 		LoginPanel.setLayout(null);
 		
 		JLabel lblLoginPage = new JLabel("Login Page");
-		lblLoginPage.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblLoginPage.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblLoginPage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLoginPage.setBounds(328, 11, 150, 39);
+		lblLoginPage.setBounds(145, 5, 175, 25);
 		LoginPanel.add(lblLoginPage);
 		
 		JLabel usernamelbl = new JLabel("Username: ");
 		usernamelbl.setHorizontalAlignment(SwingConstants.CENTER);
-		usernamelbl.setBounds(226, 284, 76, 14);
+		usernamelbl.setBounds(150, 195, 70, 15);
 		LoginPanel.add(usernamelbl);
 		
 		JLabel passwordlbl = new JLabel("Password:");
 		passwordlbl.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordlbl.setBounds(226, 321, 76, 14);
+		passwordlbl.setBounds(150, 225, 70, 15);
 		LoginPanel.add(passwordlbl);
 		
 		username = new JTextField();
-		username.setBounds(328, 283, 86, 20);
+		username.setBounds(225, 195, 86, 20);
 		LoginPanel.add(username);
 		username.setColumns(10);
 		
 		password = new JTextField();
-		password.setBounds(328, 314, 86, 20);
+		password.setBounds(225, 225, 86, 20);
 		LoginPanel.add(password);
 		password.setColumns(10);
 		
 		JButton btnEnter = new JButton("Enter");
-		btnEnter.setBounds(283, 369, 89, 23);
+		btnEnter.setBounds(200, 300, 89, 23);
 		LoginPanel.add(btnEnter);
 		
 		JButton btnAccountCreation = new JButton("Account Creation");
@@ -120,70 +121,100 @@ public class App {
 				AccountCreation.setVisible(true);
 			}
 		});
-		btnAccountCreation.setBounds(271, 528, 177, 23);
+		btnAccountCreation.setBounds(355, 5, 135, 25);
 		LoginPanel.add(btnAccountCreation);
 	}
 	
 	public void accountPanel()
 	{
 		AccountCreation = new JPanel();
-		AccountCreation.setBounds(0, 0, 794, 771);
+		AccountCreation.setBounds(0, 0, 494, 471);
 		frmAccountApp.getContentPane().add(AccountCreation);
 		AccountCreation.setLayout(null);
 		
 		JLabel title = new JLabel("Account Creation");
 		title.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
-		title.setBounds(310, 11, 192, 35);
+		title.setBounds(145, 5, 175, 20);
 		AccountCreation.add(title);
 		
 		JLabel firstnamelbl = new JLabel("First name:");
-		firstnamelbl.setBounds(275, 181, 64, 14);
+		firstnamelbl.setBounds(145, 144, 80, 15);
 		AccountCreation.add(firstnamelbl);
 		
 		JLabel lastnamelbl = new JLabel("Last name:");
-		lastnamelbl.setBounds(268, 215, 76, 14);
+		lastnamelbl.setBounds(145, 169, 80, 15);
 		AccountCreation.add(lastnamelbl);
 		
 		JLabel emaillbl = new JLabel("Email: ");
-		emaillbl.setBounds(279, 242, 46, 14);
+		emaillbl.setBounds(145, 194, 80, 15);
 		AccountCreation.add(emaillbl);
 		
 		JLabel usernamelbl = new JLabel("User name:");
-		usernamelbl.setBounds(272, 272, 67, 14);
+		usernamelbl.setBounds(145, 219, 80, 15);
 		AccountCreation.add(usernamelbl);
 		
 		JLabel passwordlbl = new JLabel("Password: ");
-		passwordlbl.setBounds(278, 308, 59, 14);
+		passwordlbl.setBounds(145, 244, 80, 15);
 		AccountCreation.add(passwordlbl);
 		
 		firstname = new JTextField();
-		firstname.setBounds(363, 175, 86, 20);
+		firstname.setBounds(235, 141, 86, 20);
 		AccountCreation.add(firstname);
 		firstname.setColumns(10);
 		
 		lastname = new JTextField();
-		lastname.setBounds(364, 207, 86, 20);
+		lastname.setBounds(235, 166, 86, 20);
 		AccountCreation.add(lastname);
 		lastname.setColumns(10);
 		
 		email = new JTextField();
-		email.setBounds(364, 238, 86, 20);
+		email.setBounds(235, 191, 86, 20);
 		AccountCreation.add(email);
 		email.setColumns(10);
 		
 		usernameTF = new JTextField();
-		usernameTF.setBounds(365, 268, 86, 20);
+		usernameTF.setBounds(235, 216, 86, 20);
 		AccountCreation.add(usernameTF);
 		usernameTF.setColumns(10);
 		
 		passwordTF = new JTextField();
-		passwordTF.setBounds(365, 302, 86, 20);
+		passwordTF.setBounds(235, 241, 86, 20);
 		AccountCreation.add(passwordTF);
 		passwordTF.setColumns(10);
 		
 		JButton donebtn = new JButton("Enter");
-		donebtn.setBounds(317, 366, 89, 23);
+		donebtn.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				String name1 = firstname.getText();
+				String name2 = lastname.getText();
+				String emailinput = email.getText();
+				String userinput = usernameTF.getText();
+				String passwordinput = passwordTF.getText();
+				
+					
+				if(firstname.equals(0) || name2.isEmpty() || emailinput.isEmpty() || userinput.isEmpty() || passwordinput.isEmpty())
+				{
+					JOptionPane.showMessageDialog(null, "Please enter your details");
+				}
+				else
+				{
+					firstname.setText("");
+					lastname.setText("");
+					email.setText("");
+					usernameTF.setText("");
+					passwordTF.setText("");
+					
+					DBClass application = new DBClass();
+					application.insert(name1, name2, emailinput, userinput, passwordinput);
+					JOptionPane.showMessageDialog(null, "Details added successfully");
+				}
+			}
+		});
+		donebtn.setBounds(191, 287, 89, 23);
 		AccountCreation.add(donebtn);
 		
 		JButton backbtn = new JButton("Back");
@@ -196,7 +227,7 @@ public class App {
 				LoginPanel.setVisible(true);
 			}
 		});
-		backbtn.setBounds(10, 11, 89, 23);
+		backbtn.setBounds(10, 5, 89, 20);
 		AccountCreation.add(backbtn);
 		
 		JButton btnConnectionTest = new JButton("Connection Test");
@@ -205,27 +236,11 @@ public class App {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				connect();
+				DBClass dbmethod = new DBClass();
+				dbmethod.connectTest();
 			}
 		});
-		btnConnectionTest.setBounds(661, 11, 123, 23);
+		btnConnectionTest.setBounds(350, 5, 135, 20);
 		AccountCreation.add(btnConnectionTest);
 	}
-	private Connection connect() 
-	{
-        // SQLite connection string
-        String url = "jdbc:sqlite:C:\\Users\\John\\Desktop\\SQL DB\\Users.db";
-        Connection conn = null;
-        try 
-        {
-        	 System.out.println("Connection to SQLite has been established.");  
-        	
-            conn = DriverManager.getConnection(url);
-        } 
-        catch (SQLException e) 
-        {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
 }
