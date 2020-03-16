@@ -15,6 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -23,6 +27,7 @@ import java.sql.SQLException;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
+import javax.swing.DropMode;
 
 public class App {
 
@@ -47,10 +52,10 @@ public class App {
 		frmAccountApp = new JFrame();
 		frmAccountApp.setResizable(false);
 		frmAccountApp.setTitle("Account App");
-		frmAccountApp.setBackground(Color.PINK);
 		frmAccountApp.setBounds(100, 100, 500, 500);
 		frmAccountApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAccountApp.getContentPane().setLayout(null);
+		frmAccountApp.setLocationRelativeTo(null);
 		
 		EventQueue.invokeLater(new Runnable() 
 		{
@@ -84,6 +89,7 @@ public class App {
 	public void loginPanel()
 	{
 		LoginPanel = new JPanel();
+		LoginPanel.setBackground(Color.pink);
 		LoginPanel.setBounds(0, 0, 494, 471);
 		frmAccountApp.getContentPane().add(LoginPanel);
 		LoginPanel.setLayout(null);
@@ -115,6 +121,21 @@ public class App {
 		password.setColumns(10);
 		
 		JButton btnEnter = new JButton("Enter");
+		btnEnter.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				String name, pass;
+				name = username.getText();
+				pass = password.getText();
+				
+				DBClass loginAcc = new DBClass();
+				
+				loginAcc.login(name, pass);
+				
+			}
+		});
 		btnEnter.setBounds(200, 300, 89, 23);
 		LoginPanel.add(btnEnter);
 		
@@ -125,6 +146,7 @@ public class App {
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				LoginPanel.setVisible(false);
+				AdminPanel.setVisible(false);
 				AccountCreation.setVisible(true);
 			}
 		});
@@ -270,7 +292,7 @@ public class App {
 	public void adminPanel()
 	{
 		AdminPanel = new JPanel();
-		AdminPanel.setVisible(false);
+		AdminPanel.setVisible(true);
 		AdminPanel.setBounds(0, 0, 494, 471);
 		frmAccountApp.getContentPane().add(AdminPanel);
 		AdminPanel.setLayout(null);
@@ -287,20 +309,51 @@ public class App {
 			{
 				LoginPanel.setVisible(true);
 				AdminPanel.setVisible(false);
+				AccountCreation.setVisible(false);
 			}
 		});
 		backbtn.setBounds(10, 5, 89, 20);
 		AdminPanel.add(backbtn);
 		
+		JEditorPane editorPane = new JEditorPane();
+		editorPane.setEditable(false);
+		editorPane.setBounds(121, 166, 249, 112);
+		AdminPanel.add(editorPane);
+		
 		String[] dbInfo = {"First Name", "Last Name", "Email", "Username", "Password"};
 		
 		JComboBox comboBox = new JComboBox(dbInfo);
+		comboBox.addItemListener(
+				new ItemListener()
+				{
+					public void itemStateChanged(ItemEvent event)
+					{
+						DBClass dbselect = new DBClass();
+						//dbselect.toString();
+						
+						if(event.getStateChange() == ItemEvent.SELECTED)
+						{
+							System.out.println((dbInfo[comboBox.getSelectedIndex()]));
+							
+							switch (dbInfo[comboBox.getSelectedIndex()])
+							{
+							case "First Name":
+								dbselect.selectallfirstname();
+								break;
+							case "Last Name":
+								break;
+							case "Email":
+								break;
+							case "Username":
+								dbselect.selectUsername();
+								break;
+							}
+						}
+					}
+				}
+		);
 		comboBox.setBounds(183, 116, 117, 20);
 		AdminPanel.add(comboBox);
-		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(121, 166, 249, 112);
-		AdminPanel.add(editorPane);
 		
 		JButton btnFinish = new JButton("Finish");
 		btnFinish.addMouseListener(new MouseAdapter() 
@@ -308,11 +361,7 @@ public class App {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				DBClass dbselect = new DBClass();
 				
-				dbselect.ifEmpty();
-				
-				dbselect.selectAll();
 			}
 		});
 		btnFinish.setBounds(199, 321, 89, 23);
@@ -341,6 +390,41 @@ public class App {
 		btnResetDb.setBounds(10, 437, 89, 23);
 		AdminPanel.add(btnResetDb);
 		
-
+		DBClass dbusername = new DBClass();
+		
+		//List of usernames in DB
+		String[] usernamearr = {}; 
+		
+		JComboBox usernameCB = new JComboBox();
+		/*usernameCB.addItemListener(
+				new ItemListener()
+				{
+					public void itemStateChanged(ItemEvent event)
+					{
+						dbusername.selectUsername();
+						
+						usernamearr.equals(dbusername);
+					}
+				});
+				*/
+		usernamearr.equals(dbusername);
+		usernameCB.setBounds(183, 68, 117, 20);
+		AdminPanel.add(usernameCB);
+		
+		JButton btnViewAll = new JButton("View All");
+		btnViewAll.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				DBClass dbselect = new DBClass();
+				
+				dbselect.ifEmpty();
+				
+				dbselect.selectAll();
+			}
+		});
+		btnViewAll.setBounds(395, 437, 89, 23);
+		AdminPanel.add(btnViewAll);
 	}
 }
